@@ -2,15 +2,15 @@ import React from "react";
 
 const ErrorPage = ({ msg }) => {
   return (
-    <main className="main">
-      <div className="error">
-        <div className="error__title">
-          <h2 className="heading-secondary heading-secondary--error">
+    <main>
+      <div className="error mt-5 vh-100">
+        <div>
+          <h2 className="text-center text-danger">
             Uh oh! Something went wrong!
           </h2>
-          <h2 className="error__emoji">😢 🤯</h2>
+          <h2 className="text-center">😢 🤯</h2>
         </div>
-        <div className="error__msg">{msg}</div>
+        <div className="text-center">{msg}</div>
       </div>
     </main>
   );

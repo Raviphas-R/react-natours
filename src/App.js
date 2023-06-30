@@ -1,20 +1,16 @@
-// import { BASE_URL } from "./config";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/header";
-// import Footer from "./components/footer";
 import LoginPage from "./components/login";
-import TourCard from "./components/overview";
-// import { getAllTours } from "./API";
+import Overview from "./components/overview";
+import ErrorPage from "./components/error";
 
 function App() {
   return (
     <Router>
-      <Header />
       <Routes>
-        <Route path="/" element={<TourCard />}></Route>
+        <Route path="/" element={<Overview />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
-      {/* <Footer /> */}
     </Router>
   );
 }

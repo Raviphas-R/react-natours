@@ -44,3 +44,7 @@
   background-color: #f7f7f7;
   color: #222222;
 }
+
+.text-shadow {
+  text-shadow: 2px 1.5px 6px rgba(171, 171, 171, 0.7);
+}

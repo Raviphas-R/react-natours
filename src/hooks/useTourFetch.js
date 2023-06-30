@@ -5,11 +5,13 @@ export const useTourFetch = () => {
   const [tours, setTours] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [isRenderFooter, setIsRenderFooter] = useState(false);
 
   const fetchTours = async () => {
     try {
-      setError(false);
       setIsLoading(true);
+      setIsRenderFooter(true);
+      setError(false);
 
       const tours = await getAllTours();
       setTours(tours.data);
@@ -32,5 +34,5 @@ export const useTourFetch = () => {
   //   }
   // }, [isLoading]);
 
-  return { tours, isLoading, error };
+  return { tours, isLoading, error, isRenderFooter };
 };

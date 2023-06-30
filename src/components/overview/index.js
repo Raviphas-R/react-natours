@@ -25,7 +25,7 @@ const TourCard = () => {
                   alt={tour.name}
                 />
               </div>
-              <h4 className="heading-tertiary shadow ">
+              <h4 className="heading-tertiary text-end">
                 <span className="px-3 py-1 rounded-pill">{tour.name}</span>
               </h4>
             </div>

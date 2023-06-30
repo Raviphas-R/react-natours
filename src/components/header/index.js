@@ -7,7 +7,7 @@ const Header = ({ user }) => {
   return (
     <header>
       <div className="header d-flex position-relative align-items-center py-2 px-3">
-        <a className="header__el d-none d-sm-inline-block" href="/">
+        <a className="header__el d-none d-sm-inline-block fw-bold" href="/">
           All tours
         </a>
         <a href="/" className="header__logo position-absolute">

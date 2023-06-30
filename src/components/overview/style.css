@@ -1,7 +1,6 @@
 .card {
   max-width: 380px;
-  -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
@@ -15,21 +14,14 @@
   height: 180px;
   -webkit-clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
   clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
+  border-radius: 20px 20px 0 0;
 }
 
 .card__picture-overlay {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    from(#7dd56f),
-    to(#28b487)
-  );
-  background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
-  opacity: 0.7;
+  border-radius: 20px 20px 0 0;
 }
 
 .card__picture-img {
@@ -37,6 +29,7 @@
   object-fit: cover;
   height: 100%;
   width: 100%;
+  border-radius: 20px 20px 0 0;
 }
 
 .card__details {
@@ -61,10 +54,11 @@
   fill: #55c57a;
 }
 
-.card__footer {
+.card-footer {
   color: #555555;
   background-color: #f7f7f7;
   border-top: 1px solid #f1f1f1;
+  border-radius: 0 0 20px 20px !important;
 }
 
 .text-grey {
@@ -84,20 +78,15 @@
 }
 
 .heading-tertiary span {
-  line-height: 1;
+  line-height: 1.5;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    from(rgba(125, 213, 111, 0.85)),
-    to(rgba(40, 180, 135, 0.85))
-  );
-  background-image: linear-gradient(
-    to bottom right,
-    rgba(125, 213, 111, 0.85),
-    rgba(40, 180, 135, 0.85)
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(47, 47, 47, 1) 0%,
+    rgba(19, 22, 69, 1) 95%
   );
 }
 

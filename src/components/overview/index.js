@@ -13,9 +13,9 @@ const TourCard = () => {
 
   return (
     <main>
-      <div className="card-container d-flex flex-wrap justify-content-around gap-4 px-5 py-4 py-lg-5">
+      <div className="card-container d-flex flex-wrap justify-content-around gap-5 px-5 py-4 py-lg-5">
         {tours.map((tour) => (
-          <div className="card d-flex flex-column rounded" key={tour.id}>
+          <div className="card d-flex flex-column shadow" key={tour.id}>
             <div className="card__header">
               <div className="card__picture">
                 <div className="card__picture-overlay">&nbsp;</div>
@@ -25,8 +25,8 @@ const TourCard = () => {
                   alt={tour.name}
                 />
               </div>
-              <h4 className="heading-tertiary">
-                <span className="px-1">{tour.name}</span>
+              <h4 className="heading-tertiary shadow ">
+                <span className="px-3 py-1 rounded-pill">{tour.name}</span>
               </h4>
             </div>
             <div className="card__details px-4 py-3">
@@ -68,7 +68,7 @@ const TourCard = () => {
                 </div>
               </div>
             </div>
-            <div className="card__footer d-flex flex-column flex-sm-row align-items-center justify-content-between pt-2 pb-3 px-4">
+            <div className="card-footer d-flex flex-column flex-sm-row align-items-center justify-content-between pt-2 pb-3 px-4">
               <div className="d-flex flex-column  align-items-center align-items-sm-start">
                 <p className="my-0 my-sm-1">
                   <span className="fw-bold">${tour.price}</span>

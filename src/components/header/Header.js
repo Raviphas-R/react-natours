@@ -2,7 +2,7 @@ import React from "react";
 import { BASE_URL } from "../../config";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo-white.png";
-import "./style.css";
+import "./Header.css";
 
 const Header = ({ user }) => {
   return (

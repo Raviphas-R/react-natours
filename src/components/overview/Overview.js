@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTourFetch } from "../../hooks/useTourFetch";
-import "./style.css";
+import "./Overview.css";
 import { BASE_URL } from "../../config";
 import icons from "../../img/icons.svg";
-import Spinner from "../spinner";
-import Header from "../header";
-import Footer from "../footer";
+import Spinner from "../spinner/Spinner";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 const Overview = () => {
   const { tours, isLoading, error, isRenderFooter } = useTourFetch();
@@ -18,9 +18,12 @@ const Overview = () => {
         <Spinner />
       ) : (
         <main>
-          <div className="card-container d-flex flex-wrap justify-content-around gap-5 px-5 py-4 py-lg-5">
+          <div className="card-container d-flex flex-wrap justify-content-around gap-5 px-5 py-4 mt-lg-3">
             {tours.map((tour) => (
-              <div className="card d-flex flex-column shadow" key={tour.id}>
+              <div
+                className="card card-overview d-flex flex-column shadow"
+                key={tour.id}
+              >
                 <div className="card__header">
                   <div className="card__picture">
                     <div className="card__picture-overlay">&nbsp;</div>

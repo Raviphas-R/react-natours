@@ -90,12 +90,12 @@
   );
 }
 
-.btn {
+.overview__card-footer__btn-tour-details {
   transition: 0.2s all;
   font-size: 0.7rem;
 }
 
-.btn:hover {
+.overview__card-footer__btn-tour-details:hover {
   color: white;
   transform: translateY(-3px);
   -webkit-box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
@@ -114,7 +114,7 @@
 
   .card__data,
   .card__details-tour-summary,
-  .btn {
+  .overview__card-footer__btn-tour-details {
     font-size: inherit;
   }
 

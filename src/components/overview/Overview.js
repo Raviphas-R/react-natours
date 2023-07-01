@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useTourFetch } from "../../hooks/useTourFetch";
 import "./Overview.css";
 import { BASE_URL } from "../../config";
@@ -7,13 +7,25 @@ import icons from "../../img/icons.svg";
 import Spinner from "../spinner/Spinner";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import { Cookies } from "react-cookie";
+// import jwt from "jsonwebtoken";
 
 const Overview = () => {
+  const cookies = new Cookies();
+  console.log(cookies.get("token"));
+  const token = cookies.get("token");
+
   const { tours, isLoading, error, isRenderFooter } = useTourFetch();
+  const user = "";
   if (error) return <div>Sonething went wrong ...</div>;
+  if (!user) {
+    console.log("1234");
+    return <Navigate to="/login"></Navigate>;
+  }
   return (
     <>
-      <Header />
+      {/* pass user to header */}
+      <Header user />
       {isLoading || !tours ? (
         <Spinner />
       ) : (
@@ -94,7 +106,7 @@ const Overview = () => {
                   <div>
                     <Link
                       to={`/tours/${tour.slug}`}
-                      className="btn btn--green rounded-pill text-uppercase me-0 me-sm-2"
+                      className="btn overview__card-footer__btn-tour-details btn--green rounded-pill text-uppercase me-0 me-sm-2"
                     >
                       Details
                     </Link>

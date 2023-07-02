@@ -30,8 +30,8 @@ const Header = ({ user }) => {
                 <a className="" href="/me">
                   <img
                     className="nav__user-img"
-                    // src={`${BASE_URL}/img/users/${user.photo}`}
-                    // alt={`Images of ${user.name}`}
+                    src={`${BASE_URL}/img/users/${user.photo}`}
+                    alt={`Images of ${user.name}`}
                   />
                   {/* <span>{user.name}</span> */}
                 </a>

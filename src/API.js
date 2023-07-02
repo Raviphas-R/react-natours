@@ -39,7 +39,7 @@ const logIn = async (userData) => {
 
 const logOut = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/api/v1/users/logout`);
+    await axios.get(`${BASE_URL}/api/v1/users/logout`);
     const cookies = new Cookies();
     cookies.remove("token");
   } catch (error) {

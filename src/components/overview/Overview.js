@@ -13,7 +13,7 @@ import { Cookies } from "react-cookie";
 const Overview = () => {
   const cookies = new Cookies();
   console.log(cookies.get("token"));
-  const token = cookies.get("token");
+  // const token = cookies.get("token");
 
   const { tours, isLoading, error, isRenderFooter } = useTourFetch();
   const user = "";

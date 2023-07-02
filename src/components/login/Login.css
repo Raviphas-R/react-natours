@@ -16,7 +16,8 @@
   max-width: 340px;
 }
 
-.card__create-new-acc {
+.card__create-new-acc,
+.card__login-form__errormsg {
   width: 100%;
   max-width: 340px;
 }

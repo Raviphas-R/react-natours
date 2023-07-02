@@ -9,6 +9,49 @@
   top: 8%;
 }
 
+.header__user-name {
+  font-size: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+.header__logout-btn {
+  font-size: 0.5rem;
+  color: white;
+  text-decoration: none;
+  border: 1px solid white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+.header__logout-btn:hover {
+  color: #222;
+  background-color: white;
+}
+
+.nav__user-img {
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+}
+
+@media only screen and (min-width: 768px) {
+  .header__user-name {
+    font-size: 1.4rem;
+  }
+
+  .header__logout-btn {
+    font-size: 0.8rem;
+  }
+
+  .nav__user-img {
+    width: 36px;
+    height: 36px;
+  }
+}
+
 @media only screen and (min-width: 576px) {
   .header__el {
     font-size: 1.2rem;

@@ -1,31 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
+import "./Overview.css";
 import { Link, Navigate } from "react-router-dom";
 import { useTourFetch } from "../../hooks/useTourFetch";
-import "./Overview.css";
 import { BASE_URL } from "../../config";
+import { AuthContext } from "../../contexts/AuthContext";
 import icons from "../../img/icons.svg";
 import Spinner from "../spinner/Spinner";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import { Cookies } from "react-cookie";
-// import jwt from "jsonwebtoken";
 
 const Overview = () => {
-  const cookies = new Cookies();
-  console.log(cookies.get("token"));
-  // const token = cookies.get("token");
-
   const { tours, isLoading, error, isRenderFooter } = useTourFetch();
-  const user = "";
-  if (error) return <div>Sonething went wrong ...</div>;
-  if (!user) {
-    console.log("1234");
+  const { user } = useContext(AuthContext);
+  // const [userData, setUserData] = useState(null);
+  const cookie = new Cookies();
+  const token = cookie.get("token");
+
+  // if (user) {
+  //   setUserData(user);
+  // }
+  // console.log(user);
+
+  if (error) return <div>Something went wrong ...</div>;
+  console.log("Overview component rendered");
+
+  if (!user && !token) {
+    console.log("Please Log in");
     return <Navigate to="/login"></Navigate>;
   }
   return (
     <>
       {/* pass user to header */}
-      <Header user />
+      <Header user={user} />
       {isLoading || !tours ? (
         <Spinner />
       ) : (

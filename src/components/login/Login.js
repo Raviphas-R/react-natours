@@ -1,20 +1,41 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import logo from "../../img/logo-green-small.png";
 import { logIn } from "../../API";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const LoginPage = () => {
+  const naviagte = useNavigate();
+  const { user, login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [onLogin, SetOnLogin] = useState(false);
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
-    console.log(email, password);
+    setErrorMsg("");
+    SetOnLogin(true);
     const data = { email, password };
-    logIn(data);
-    // setEmail("");
-    // setPassword("");
+    const response = await logIn(data);
+    const status = response.status;
+    if (user) {
+      naviagte("/tours");
+    }
+
+    if (status === "success") {
+      setEmail("");
+      setPassword("");
+      SetOnLogin(false);
+      login(response.data.user);
+      naviagte("/tours");
+    } else if (status === "fail") {
+      SetOnLogin(false);
+      setErrorMsg(response.message);
+      setPassword("");
+    }
   };
 
   return (
@@ -24,9 +45,14 @@ const LoginPage = () => {
           <Link to="/login" className="mt-5 mb-3">
             <img src={logo} alt="logo-images" className="login__logo-image" />
           </Link>
-
           <h3 className="login-form__header mb-4">Sign in to Natours</h3>
-
+          {errorMsg ? (
+            <>
+              <div className="card card__login-form__errormsg text-center mb-3">
+                <div className="card-body alert-card">{errorMsg}</div>
+              </div>
+            </>
+          ) : null}
           <div className="card card__login-form">
             <div className="card-body">
               <form>
@@ -64,7 +90,7 @@ const LoginPage = () => {
                   className="btn login__btn-login btn-primary"
                   onClick={onSubmit}
                 >
-                  Sign In
+                  {onLogin ? "Loading..." : "Sign In"}
                 </button>
               </form>
             </div>

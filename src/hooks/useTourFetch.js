@@ -26,13 +26,5 @@ export const useTourFetch = () => {
     fetchTours();
   }, []);
 
-  // useEffect(() => {
-  //   if (isLoading === true) {
-  //     console.log("loading...");
-  //   } else {
-  //     console.log("finish");
-  //   }
-  // }, [isLoading]);
-
   return { tours, isLoading, error, isRenderFooter };
 };

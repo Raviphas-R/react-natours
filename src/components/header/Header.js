@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
+import "./Header.css";
 import { BASE_URL } from "../../config";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo-white.png";
-import "./Header.css";
-import { logOut } from "../../API";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Header = ({ user }) => {
   const { logout } = useContext(AuthContext);
   const onLogout = () => {
-    logOut();
     logout();
   };
   return (

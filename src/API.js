@@ -10,26 +10,23 @@ const defaultConfig = {
   },
 };
 
-const getAllTours = async () => {
+export const getAllTours = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/api/v1/tours`);
-    // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-const autoAuth = async (token) => {
+export const autoAuth = async (token) => {
   const secret = new TextEncoder().encode(process.env.REACT_APP_JWT_SECRET);
-  const { payload, protectedHeader } = await jose.jwtVerify(token, secret);
+  const { payload } = await jose.jwtVerify(token, secret);
 
-  console.log(payload);
-  console.log(protectedHeader);
   return payload.user;
 };
 
-const logIn = async (userData) => {
+export const logIn = async (userData) => {
   try {
     const body = JSON.stringify(userData);
     const cookies = new Cookies();
@@ -53,15 +50,12 @@ const logIn = async (userData) => {
   }
 };
 
-const logOut = async () => {
+export const logOut = async () => {
   try {
     await axios.get(`${BASE_URL}/api/v1/users/logout`);
     const cookies = new Cookies();
     cookies.remove("token");
-    console.log(cookies);
   } catch (error) {
     console.error(error);
   }
 };
-
-export { getAllTours, logIn, logOut, autoAuth };

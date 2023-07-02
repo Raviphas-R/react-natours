@@ -13,25 +13,17 @@ import { Cookies } from "react-cookie";
 const Overview = () => {
   const { tours, isLoading, error, isRenderFooter } = useTourFetch();
   const { user } = useContext(AuthContext);
-  // const [userData, setUserData] = useState(null);
   const cookie = new Cookies();
   const token = cookie.get("token");
 
-  // if (user) {
-  //   setUserData(user);
-  // }
-  // console.log(user);
-
   if (error) return <div>Something went wrong ...</div>;
-  console.log("Overview component rendered");
 
   if (!user && !token) {
-    console.log("Please Log in");
     return <Navigate to="/login"></Navigate>;
   }
+
   return (
     <>
-      {/* pass user to header */}
       <Header user={user} />
       {isLoading || !tours ? (
         <Spinner />

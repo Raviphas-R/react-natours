@@ -1,41 +1,41 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import logo from "../../img/logo-green-small.png";
-import { logIn } from "../../API";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const LoginPage = () => {
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
   const { user, login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState(null);
   const [onLogin, SetOnLogin] = useState(false);
 
+  ////////// Solve when logout, it will navigate back to overview first
+  useEffect(() => {
+    if (user) {
+      console.log("login page");
+      navigate("/tours");
+    }
+  });
+  /////////
   const onSubmit = async (event) => {
     event.preventDefault();
-    setErrorMsg("");
+    setErrorMsg(null);
     SetOnLogin(true);
     const data = { email, password };
-    const response = await logIn(data);
+    const response = await login(data);
     const status = response.status;
-    if (user) {
-      naviagte("/tours");
-    }
-
-    if (status === "success") {
-      setEmail("");
-      setPassword("");
-      SetOnLogin(false);
-      login(response.data.user);
-      naviagte("/tours");
-    } else if (status === "fail") {
-      SetOnLogin(false);
+    if (status === "fail") {
       setErrorMsg(response.message);
-      setPassword("");
+    } else {
+      setEmail(null);
+      setErrorMsg(null);
     }
+    setPassword("");
+    SetOnLogin(false);
   };
 
   return (

@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
-import { autoAuth } from "../API";
+import { autoAuth, logOut, logIn } from "../API";
+import { useNavigate } from "react-router-dom";
 import { Cookies } from "react-cookie";
 
 // Create the AuthContext
@@ -8,29 +9,36 @@ export const AuthContext = createContext();
 // Create the AuthProvider component
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
+  const navigate = useNavigate();
   const cookies = new Cookies();
   const token = cookies.get("token");
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const getUser = async () => {
       if (token && !user) {
         const userData = await autoAuth(token);
         console.log(userData);
         setUser(userData);
       }
     };
-
-    fetchUser();
+    getUser();
+    if (user) {
+      console.log("Navigate to tour");
+    }
   }, [token, user]);
 
-  const login = (userData) => {
-    // Perform authentication logic here
-    setUser(userData);
+  const login = async (userData) => {
+    const response = await logIn(userData);
+    const status = response.status;
+    if (status === "success") {
+      setUser(response.data.user);
+      navigate("/tours");
+    }
+    return response;
   };
 
-  const logout = () => {
-    // Perform logout logic here
+  const logout = async () => {
+    await logOut();
     setUser(null);
   };
 

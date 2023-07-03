@@ -44,7 +44,13 @@ const Header = ({ user }) => {
                 onClick={onLogout}
                 disabled={loading}
               >
-                {loading ? "Loading.." : "Log out"}
+                {loading ? (
+                  <>
+                    <i className="fa fa-spinner fa-spin me-2"></i>Loading
+                  </>
+                ) : (
+                  "Log out"
+                )}
               </button>
             </div>
           </>

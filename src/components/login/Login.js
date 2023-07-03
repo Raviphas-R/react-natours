@@ -21,7 +21,7 @@ const LoginPage = () => {
     if (status === "fail") {
       setErrorMsg(response.message);
     } else {
-      setEmail(null);
+      setEmail("");
       setErrorMsg(null);
     }
     setPassword("");
@@ -81,7 +81,13 @@ const LoginPage = () => {
                   onClick={onSubmit}
                   disabled={!email || !password || onLogin}
                 >
-                  {onLogin ? "Loading..." : "Sign In"}
+                  {onLogin ? (
+                    <>
+                      <i className="fa fa-spinner fa-spin me-2"></i>Loading...
+                    </>
+                  ) : (
+                    "Sign In"
+                  )}
                 </button>
               </form>
             </div>

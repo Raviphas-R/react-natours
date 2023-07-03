@@ -28,10 +28,9 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (userData) => {
     const response = await logIn(userData);
-    const user = response.data.user;
     const status = response.status;
     if (status === "success") {
-      setUser(user);
+      setUser(response.data.user);
       navigate("/tours");
     }
     return response;

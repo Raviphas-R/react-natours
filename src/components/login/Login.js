@@ -1,26 +1,16 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import logo from "../../img/logo-green-small.png";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-  const { user, login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState(null);
   const [onLogin, SetOnLogin] = useState(false);
 
-  ////////// Solve when logout, it will navigate back to overview first
-  useEffect(() => {
-    if (user) {
-      console.log("login page");
-      navigate("/tours");
-    }
-  });
-  /////////
   const onSubmit = async (event) => {
     event.preventDefault();
     setErrorMsg(null);
@@ -89,6 +79,7 @@ const LoginPage = () => {
                   type="submit"
                   className="btn login__btn-login btn-primary"
                   onClick={onSubmit}
+                  disabled={!email || !password || onLogin}
                 >
                   {onLogin ? "Loading..." : "Sign In"}
                 </button>

@@ -52,9 +52,10 @@ export const logIn = async (userData) => {
 
 export const logOut = async () => {
   try {
-    await axios.get(`${BASE_URL}/api/v1/users/logout`);
+    const response = await axios.get(`${BASE_URL}/api/v1/users/logout`);
     const cookies = new Cookies();
     cookies.remove("token");
+    return response;
   } catch (error) {
     console.error(error);
   }

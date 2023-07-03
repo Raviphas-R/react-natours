@@ -17,29 +17,31 @@ export const AuthProvider = ({ children }) => {
     const getUser = async () => {
       if (token && !user) {
         const userData = await autoAuth(token);
-        console.log(userData);
         setUser(userData);
       }
     };
     getUser();
-    if (user) {
-      console.log("Navigate to tour");
+    if (user && token) {
+      navigate("/tours");
     }
-  }, [token, user]);
+  }, [token, user, navigate]);
 
   const login = async (userData) => {
     const response = await logIn(userData);
+    const user = response.data.user;
     const status = response.status;
     if (status === "success") {
-      setUser(response.data.user);
+      setUser(user);
       navigate("/tours");
     }
     return response;
   };
 
   const logout = async () => {
-    await logOut();
+    const response = await logOut();
     setUser(null);
+    navigate("/login");
+    return response.data.status;
   };
 
   // Pass the user and login/logout functions as the context value

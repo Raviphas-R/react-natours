@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./Header.css";
 import { BASE_URL } from "../../config";
 import { Link } from "react-router-dom";
@@ -6,9 +6,14 @@ import logo from "../../img/logo-white.png";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Header = ({ user }) => {
+  const [loading, setLoading] = useState(false);
   const { logout } = useContext(AuthContext);
-  const onLogout = () => {
-    logout();
+  const onLogout = async () => {
+    setLoading(true);
+    const response = await logout();
+    if (response === "success") {
+      setLoading(false);
+    }
   };
   return (
     <header>
@@ -34,13 +39,13 @@ const Header = ({ user }) => {
               <span className="header__user-name me-2 me-md-3">
                 {user.name.split(" ")[0]} {user.name.split(" ")[1].slice(0, 1)}.
               </span>
-              <Link
-                to="/login"
+              <button
                 className="header__logout-btn mt-1 mt-md-0"
                 onClick={onLogout}
+                disabled={loading}
               >
-                Log out
-              </Link>
+                {loading ? "Loading.." : "Log out"}
+              </button>
             </div>
           </>
         ) : null}

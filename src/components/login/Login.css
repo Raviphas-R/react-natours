@@ -22,6 +22,10 @@
   max-width: 340px;
 }
 
+.card__create-new-acc {
+  font-size: clamp(15px, 4.8vw, 1rem);
+}
+
 .form-label__forgotpassword a {
   text-decoration: none;
   font-size: 0.8rem;

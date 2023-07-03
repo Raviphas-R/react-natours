@@ -94,7 +94,7 @@ const LoginPage = () => {
           </div>
           <div className="card card__create-new-acc mt-4">
             <div className="card-body text-center">
-              New to Kanban?
+              New to Natours?
               <span className="create-new-acc__span ms-2">
                 <Link to="/login">Create an account</Link>
               </span>
